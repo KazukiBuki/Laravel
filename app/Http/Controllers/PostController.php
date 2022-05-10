@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 class PostController extends Controller
 {
+
+    public function __construct(){
+        $this->middleware('auth', ['except'=>['index', 'showPost', ]]);
+    }
+
     public function index(){
         $posts = Post::paginate(1);
         return view('pages.home', compact('posts'));

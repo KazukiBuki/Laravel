@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use App\Http\Controllers\CategoryController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -20,3 +21,11 @@ Route::get('/post/update/{post}', [PostController::class,'editPost']);
 Route::get('/post/delete/{post}', [PostController::class,'deletePost']);
 Route::post('/store', [PostController::class,'store']);
 Route::post('/update/{post}', [PostController::class,'storeUpdate']);
+
+Auth::routes();
+
+Route::get('/new-category', [CategoryController::class, 'index']);
+Route::get('/show-categories', [CategoryController::class, 'showCategories']);
+Route::post('/store', [CategoryController::class, 'store']);
+Route::get('/logout', 'App\Http\Controllers\Auth\LoginController@logout');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
